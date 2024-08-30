@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.1" />
+		<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+		<PackageReference Include="Markdig" Version="0.37.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Serilog" Version="4.0.1" />
+		<PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
+		<PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="8.0.2" />
+		<PackageReference Include="Serilog.Sinks.Async" Version="2.0.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+		<PackageReference Include="Telegram.Bot" Version="19.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Jassi.Entities\Jassi.Entities.csproj" />
+	  <ProjectReference Include="..\Jassi.Repositories\Jassi.Repositories.csproj" />
+	  <ProjectReference Include="..\Jassi.Services\Jassi.Services.csproj" />
+	  <ProjectReference Include="..\Jassi.Validators\Jassi.Validators.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Logs\" />
+	  <Folder Include="wwwroot\content\2022\" />
+	  <Folder Include="wwwroot\content\2024\" />
+	  <Folder Include="wwwroot\studio\recuerdos-2\" />
+	  <Folder Include="wwwroot\studio\recuerdos-1\" />
+	  <Folder Include="wwwroot\studio\melancholy\" />
+	</ItemGroup>
+
+</Project>
