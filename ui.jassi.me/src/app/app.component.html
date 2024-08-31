@@ -1,13 +1,12 @@
 <main class="page-wrapper">
-  <ngx-loading-bar></ngx-loading-bar>
-  <app-loader></app-loader>
-  @defer{
-    <app-navbar></app-navbar>  
-  }
-  <router-outlet />
-  @defer{
-    <app-side-panel></app-side-panel>
-    <app-back-to-top></app-back-to-top>
-  }
+	<ngx-loading-bar></ngx-loading-bar>
+	<app-loader></app-loader>
+	@defer{
+	<app-navbar></app-navbar>
+	}
+	<router-outlet />
+	@defer{
+	<app-side-panel></app-side-panel>
+	<app-back-to-top></app-back-to-top>
+	}
 </main>
-

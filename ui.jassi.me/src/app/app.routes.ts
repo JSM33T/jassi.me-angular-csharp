@@ -48,7 +48,6 @@ export const routes: Route[] = [
         (m) => m.ViewComponent
       ),
   },
-
   {
     path: 'artifacts',
     loadComponent: () =>
@@ -63,6 +62,20 @@ export const routes: Route[] = [
         (m) => m.ViewComponent
       ),
   },
+  {
+    path: 'apps',
+    loadComponent: () =>
+      import('./components/apps/apps.component').then(
+        (m) => m.AppsComponent
+      ),
+  },
+  // {
+  //   path: 'artifact/:type/:slug',
+  //   loadComponent: () =>
+  //     import('./components/artifacts/view/view.component').then(
+  //       (m) => m.ViewComponent
+  //     ),
+  // },
 
   {
     path: 'studio',

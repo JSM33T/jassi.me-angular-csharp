@@ -4,6 +4,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environment/environment';
 import { destroyParallax, initParallax } from '../../../library/invokers/parallax';
+import initAOS, { cleanAOS } from '../../../library/invokers/animate-on-scroll';
+import Initswiper from '../../../library/invokers/swiper';
+import { initializeLightGallery } from '../../../library/invokers/lightgallery';
 
 @Component({
 	selector: 'app-view',
@@ -29,7 +32,7 @@ export class ViewComponent implements OnInit, OnDestroy {
 	}
 
 	private loadView(slug: string): void {
-		const filePath = `./assets/pages/studio/${slug}/index.html`;
+		const filePath = `./assets/content/studio/${slug}/index.html`;
 
 		this.http.get(filePath, { responseType: 'text' }).subscribe({
 			next: (data) => {
@@ -37,6 +40,9 @@ export class ViewComponent implements OnInit, OnDestroy {
 				this.htmlContent = this.sanitizer.bypassSecurityTrustHtml(replacedData);
         setTimeout(() => {
           initParallax();
+		  Initswiper();
+		  initAOS();
+		  initializeLightGallery();
         }, 100);
 				
 			},
