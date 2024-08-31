@@ -1,11 +1,11 @@
-import cleanup
-import build
+import scripts._cleanup as _cleanup
+import scripts._build as _build
 import traceback
 
 try:
     
-    build.run()
-    cleanup.run()
+    _build.run()
+    _cleanup.run()
 
 except Exception as e:
     # Log the error
