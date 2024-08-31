@@ -32,6 +32,7 @@ export class ViewComponent implements OnInit, AfterViewInit, OnDestroy {
 	title: string = '';
 	authors: any = [];
 	dateAdded: string = '';
+	imagesArray: any = [];
 	blogTitle: string = '';
 	isLoading = false;
 	content: SafeHtml = ''; // For holding sanitized HTML content
@@ -72,12 +73,12 @@ export class ViewComponent implements OnInit, AfterViewInit, OnDestroy {
 			img.style.width = 'auto'; // Maintains aspect ratio
 		}
 		 // Wrap consecutive images in rows and columns
-		 //@ts-ignore
-		 for (let i = 0; i < imagesArray.length - 1; i++) {
-			//@ts-ignore
-            const img1 = imagesArray[i];
-			//@ts-ignore
-            const img2 = imagesArray[i + 1];
+		
+		 for (let i = 0; i < this.imagesArray.length - 1; i++) {
+		
+            const img1 = this.imagesArray[i];
+			
+            const img2 = this.imagesArray[i + 1];
             if (img1 && img2) {
                 // Check if there are two consecutive images
                 const parent = img1.parentElement;
@@ -124,7 +125,7 @@ export class ViewComponent implements OnInit, AfterViewInit, OnDestroy {
 					this.content = this.sanitizer.bypassSecurityTrustHtml(htmlContent);
 					setTimeout(() => {
 						this.setProps();
-					}, 0);
+					}, 100);
 				} else {
 					console.log('no markdown data');
 				}
