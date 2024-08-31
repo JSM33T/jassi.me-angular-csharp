@@ -21,7 +21,6 @@
     "@angular/router": "^18.1.0",
     "@ngx-loading-bar/http-client": "^6.0.2",
     "@ngx-loading-bar/router": "^6.0.2",
-    "@types/gsap": "^3.0.0",
     "aos": "^2.3.4",
     "imagesloaded": "^5.0.0",
     "marked": "^14.0.0",

@@ -16,7 +16,48 @@ export class LoaderComponent implements OnInit, OnDestroy {
 	constructor(private httpService: HttpService, private responseHandler: ResponseHandlerService) {}
 
 	loaderText: string = 'loading...';
-  texts: string[] = ['Hello', 'Hola', 'Bonjour', 'Ciao', 'Olá', 'Привет', 'こんにちは', '你好', '안녕하세요', 'مرحبا', 'שלום', 'नमस्ते', 'สวัสดี', 'Kamusta', 'Hej', 'Hei', 'Hallo', 'Selam', 'Ahoj', 'Merhaba', 'Sawubona', 'Jambo', 'Xin chào', 'Bula', 'Halo', 'Chào', 'Terve', 'Salut', 'Kia ora', 'Sveiki', 'Tere', 'Sain baina uu', 'Zdravo', 'Sziasztok', 'Salam', 'Hallå', 'Dzień dobry', 'Γειά σου', 'Hallo', 'Aloha'];
+	texts: string[] = [
+		'Hello',
+		'Hola',
+		'Bonjour',
+		'Ciao',
+		'Olá',
+		'Привет',
+		'こんにちは',
+		'你好',
+		'안녕하세요',
+		'مرحبا',
+		'שלום',
+		'नमस्ते',
+		'สวัสดี',
+		'Kamusta',
+		'Hej',
+		'Hei',
+		'Hallo',
+		'Selam',
+		'Ahoj',
+		'Merhaba',
+		'Sawubona',
+		'Jambo',
+		'Xin chào',
+		'Bula',
+		'Halo',
+		'Chào',
+		'Terve',
+		'Salut',
+		'Kia ora',
+		'Sveiki',
+		'Tere',
+		'Sain baina uu',
+		'Zdravo',
+		'Sziasztok',
+		'Salam',
+		'Hallå',
+		'Dzień dobry',
+		'Γειά σου',
+		'Hallo',
+		'Aloha',
+	];
 
 	currentIndex: number = 0;
 	intervalId: any;
@@ -31,6 +72,7 @@ export class LoaderComponent implements OnInit, OnDestroy {
 
 		this.responseHandler.handleResponse(response$, false).subscribe({
 			next: (response) => {
+				console.log(response);
 				this.stopTextRotation();
 				if (response.status == 200) {
 					this.completeLoading();

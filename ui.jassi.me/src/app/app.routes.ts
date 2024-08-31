@@ -76,6 +76,13 @@ export const routes: Route[] = [
         (m) => m.ViewComponent
       ),
   },
+  {
+    path: 'account/login',
+    loadComponent: () =>
+      import('./components/account/login/login.component').then(
+        (m) => m.LoginComponent
+      ),
+  },
 
   { path: '**', redirectTo: '/' },
 ];
