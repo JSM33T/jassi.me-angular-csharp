@@ -1,23 +1,43 @@
-﻿using Jassi.Entities.Shared;
+﻿using Jassi.Entities.DTO;
+using Jassi.Entities.Shared;
 using Jassi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting.Internal;
+using Microsoft.Extensions.Options;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace Jassi.API.Controllers
 {
     [Route("/")]
     [ApiController]
-    public class CoreController(IWebHostEnvironment hostingEnvironment, INotificationService notificationService, IMailService mailService, ITelegramService telegramService) : ControllerBase
+    public class CoreController : FoundationController
     {
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly IMailService _mailService;
+        public CoreController(IOptionsMonitor<AlmondcoveConfig> config, ILogger<FoundationController> logger, IHttpContextAccessor httpContextAccessor, ITelegramService telegramService, IWebHostEnvironment hostingEnvironment,IMailService mailService) : base(config, logger, httpContextAccessor, telegramService)
+        {
+            _hostingEnvironment = hostingEnvironment;
+            _mailService = mailService;
+        }
 
-        private readonly IWebHostEnvironment _hostingEnvironment = hostingEnvironment;
-        private readonly INotificationService _notificationService = notificationService;
-        private readonly IMailService _mailService = mailService;
-        private readonly ITelegramService _telegramService = telegramService;
+
+        //private readonly INotificationService _notificationService = notificationService;
+        //private readonly ITelegramService _telegramService = telegramService;
 
         [HttpGet]
-        public IActionResult HeartBeat() => Ok("hello form the server");
+        public async Task<IActionResult> HeartBeat() {
+            return await ExecuteActionAsync(async () =>
+            {
+                int statCode = StatusCodes.Status200OK;
+                string message = string.Empty;
+                List<string> errors = [];
+                User_ClaimsResponse userClaims = null;
+
+                return (statCode, userClaims, message, errors);
+            }, MethodBase.GetCurrentMethod().Name);
+        }
 
         [HttpPost("kill")]
         [Authorize(Roles = "admin")]
@@ -46,15 +66,5 @@ namespace Jassi.API.Controllers
 
             return Ok("Email has been sent");
         }
-
-        [HttpGet("tele")]
-        [Authorize(Roles = "admin")]
-        public async Task<IActionResult> testtele()
-        {
-            await _telegramService.SendMessageAsync("Hello from the server");
-
-            return Ok("Hello from the server");
-        }
-
     }
 }

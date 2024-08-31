@@ -17,13 +17,13 @@ namespace Jassi.Validators
                 .MaximumLength(256).WithMessage("Email too long");
 
             RuleFor(x => x.Content)
-                .NotEmpty().WithMessage("CONTACT.VALIDATION.MESSAGE_REQUIRED")
-                .MinimumLength(5).WithMessage("CONTACT.VALIDATION.SHORT_MESSAGE")
-                .MaximumLength(512).WithMessage("CONTACT.VALIDATION.LONG_MESSAGE");
+                .NotEmpty().WithMessage("Message is required")
+                .MinimumLength(5).WithMessage("Message too short")
+                .MaximumLength(512).WithMessage("Message too long");
 
             RuleFor(x => x.Topic)
-                .NotEmpty().WithMessage("CONTACT.VALIDATION.TOPIC_REQUIRED")
-                .MaximumLength(128).WithMessage("CONTACT.VALIDATION.LONG_TOPIC");
+                .NotEmpty().WithMessage("Topic is required")
+                .MaximumLength(128).WithMessage("Topic too long");
         }
     }
 }

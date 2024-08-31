@@ -82,25 +82,21 @@ builder.Services.AddScoped<ITelegramService, TelegramService>();
 builder.Services.AddScoped<IDbConnection>(sp => new SqlConnection(jassiConfig.ConnectionString));
 
 #region Auth
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        RoleClaimType = ClaimTypes.Role,
-        ValidIssuer = jassiConfig.JwtSettings.ValidIssuer,
-        ValidAudience = jassiConfig.JwtSettings.ValidAudience,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jassiConfig.JwtSettings.IssuerSigningKey))
-    };
-});
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jassiConfig.JwtSettings.ValidIssuer,
+            ValidAudience = jassiConfig.JwtSettings.ValidAudience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jassiConfig.JwtSettings.IssuerSigningKey))
+        };
+    });
+
 #endregion
 
 

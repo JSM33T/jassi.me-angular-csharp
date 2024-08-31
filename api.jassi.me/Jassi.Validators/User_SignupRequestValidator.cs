@@ -22,7 +22,6 @@ namespace Jassi.Validators
 
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("Password is required")
-                .EmailAddress().WithMessage("Invalid email format")
                 .MaximumLength(256).WithMessage("Email too long");
         }
     }

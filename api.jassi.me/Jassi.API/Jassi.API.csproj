@@ -8,6 +8,21 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="wwwroot\content\2022\**" />
+	  <Compile Remove="wwwroot\content\2024\**" />
+	  <Compile Remove="wwwroot\studio\**" />
+	  <Content Remove="wwwroot\content\2022\**" />
+	  <Content Remove="wwwroot\content\2024\**" />
+	  <Content Remove="wwwroot\studio\**" />
+	  <EmbeddedResource Remove="wwwroot\content\2022\**" />
+	  <EmbeddedResource Remove="wwwroot\content\2024\**" />
+	  <EmbeddedResource Remove="wwwroot\studio\**" />
+	  <None Remove="wwwroot\content\2022\**" />
+	  <None Remove="wwwroot\content\2024\**" />
+	  <None Remove="wwwroot\studio\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.1" />
@@ -33,11 +48,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Logs\" />
-	  <Folder Include="wwwroot\content\2022\" />
-	  <Folder Include="wwwroot\content\2024\" />
-	  <Folder Include="wwwroot\studio\recuerdos-2\" />
-	  <Folder Include="wwwroot\studio\recuerdos-1\" />
-	  <Folder Include="wwwroot\studio\melancholy\" />
 	</ItemGroup>
 
 </Project>

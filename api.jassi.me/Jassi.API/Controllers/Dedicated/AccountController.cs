@@ -11,6 +11,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Jassi.API.Controllers.Dedicated
 {
@@ -61,12 +62,33 @@ namespace Jassi.API.Controllers.Dedicated
 
                     userClaims.Token = new JwtSecurityTokenHandler().WriteToken(token);
                 }
+                else
+                {
+                    statCode = StatusCodes.Status400BadRequest;
+                    message = "Invalid credentials";
+                    errors.Add("Please check your creds");
+                }
 
 
                 return (statCode, userClaims, message, errors);
             }, MethodBase.GetCurrentMethod().Name);
         }
         #endregion
+
+        [HttpGet("logout")]
+        [Authorize("member")]
+        public async Task<IActionResult> Logout()
+        {
+            return await ExecuteActionAsync(async () =>
+            {
+                int statCode = default;
+                string message = string.Empty;
+                List<string> errors = [];
+                User_ClaimsResponse userClaims = null;
+
+                return (statCode, userClaims, message, errors);
+            }, MethodBase.GetCurrentMethod().Name);
+        }
 
         [HttpPost("signup")]
         [AllowAnonymous]
