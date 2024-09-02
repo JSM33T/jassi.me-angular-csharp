@@ -1,5 +1,5 @@
-import scripts._cleanup as _cleanup
-import scripts._build as _build
+import scripts.partials.cleanup as _cleanup
+import scripts.partials.build as _build
 import traceback
 
 try:
